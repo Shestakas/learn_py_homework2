@@ -96,13 +96,12 @@ is_male = {
 
 def lst_value(lst): # Преобразование списка словарей, в список значений first_name
     lst_val = [x['first_name'] for x in lst]
-    lst_non = []
+    lst_bool= []
     for i in lst_val:
-        print(i)
-    return lst_non
-
-
-a = [print(f'Класс {i["class"]}: девочки {len(lst_value(i["students"]))}, мальчики {"fff"}') for i in school]
+        lst_bool.append(is_male[i])
+    return lst_bool
+    
+a = [print(f'Класс {i["class"]}: девочки {(lst_value(i["students"])).count(False)}, мальчики {sum(lst_value(i["students"]))}') for i in school]
 
 
 # Задание 5
@@ -121,5 +120,12 @@ is_male = {
     'Олег': True,
     'Миша': True,
 }
-# ???
+
+man = [(i["class"], sum(lst_value(i["students"]))) for i in school]
+man.sort(key=lambda i:i[1], reverse=True)
+woman = [(i["class"], (lst_value(i["students"])).count(False)) for i in school]
+woman.sort(key=lambda i:i[1], reverse=True)
+
+print(f'Больше всего мальчиков в классе {man[0][0]}')
+print(f'Больше всего девочек в классе {woman[0][0]}')
 
