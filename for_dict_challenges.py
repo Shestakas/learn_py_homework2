@@ -12,7 +12,13 @@ students = [
     {'first_name': 'Маша'},
     {'first_name': 'Петя'},
 ]
-# ???
+def lst_value(lst): # Преобразование списка словарей, в список значений first_name
+    lst_val = [x['first_name'] for x in lst]
+    return lst_val
+
+stud_list = lst_value(students)
+count_students = [print(f'{i}: {stud_list.count(i)}') for i in set(stud_list)]
+
 
 
 # Задание 2
@@ -26,7 +32,21 @@ students = [
     {'first_name': 'Маша'},
     {'first_name': 'Оля'},
 ]
-# ???
+'''
+def count_lst(lst): # Преобразование списка в список словарей с количеством значений
+    lst_set = [{i: lst.count(i)} for i in set(lst)]
+    return lst_set
+
+list_set = count_lst(stud_list) # [{'Петя': 1}, {'Оля': 1}, {'Вася': 1}, {'Маша': 2}]
+'''
+def max_list(lst):
+    return max(set(lst), key=lst.count)
+
+stud_list = lst_value(students) # ['Вася', 'Петя', 'Маша', 'Маша', 'Оля']
+
+print(f'Самое частое имя среди учеников: {max_list(stud_list)}') # Маша
+
+
 
 
 # Задание 3
@@ -51,7 +71,8 @@ school_students = [
         {'first_name': 'Саша'},
     ],
 ]
-# ???
+a = [print(f'Самое частое имя в классе {i}: {max_list(lst_value(x))}') 
+     for i, x in enumerate(school_students, 1)]
 
 
 # Задание 4
@@ -72,7 +93,16 @@ is_male = {
     'Миша': True,
     'Даша': False,
 }
-# ???
+
+def lst_value(lst): # Преобразование списка словарей, в список значений first_name
+    lst_val = [x['first_name'] for x in lst]
+    lst_non = []
+    for i in lst_val:
+        print(i)
+    return lst_non
+
+
+a = [print(f'Класс {i["class"]}: девочки {len(lst_value(i["students"]))}, мальчики {"fff"}') for i in school]
 
 
 # Задание 5
